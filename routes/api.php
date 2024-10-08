@@ -4,6 +4,10 @@ use App\Http\Controllers\ShravaniController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MobileController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,3 +22,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/country-codes', [MobileController::class, 'getCountryCodes']);
