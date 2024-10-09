@@ -30,4 +30,12 @@ class AdminUser extends Model
         'date_modified',
         'ip_address'
     ];
+
+
+    // This is the default, can be omitted
+    public $timestamps = true; 
+
+    // If your columns are named differently
+    const CREATED_AT = 'date_created';
+    const UPDATED_AT = 'date_modified';
 }
