@@ -22,30 +22,24 @@ class MobileController extends Controller
         // Validate the incoming request
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            // 'email' => 'required|string|email|max:255|unique:users',
-            // 'email' => 'required',
+            'email' => 'required',
             'password' => 'required|string|min:8|confirmed',
         ]);
-
-        //debug registered data
-        return response()->json($request, 201);
 
         // Check for validation errors
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }else{
-            return response()->json(['message' => 'Registration successful!'], 202);
+            // debug
+            // return response()->json(['message' => 'Registration successful!'], 202);
         }
 
         // Create the user
         $user = AdminUser::create([
             'username' => $request->name,
             'email_address' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password)
         ]);
-
-        // Optionally, you could log the user in here
-        // Auth::login($user);
 
         return response()->json([
             'message' => 'Registration successful!',
